@@ -12,6 +12,9 @@ import {
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import ApplicationComponent from '../components/ApplicationComponent'
+import ViewApp from '../components/ViewApp'
+
+
 
 const ProductScreen = ({ history, match }) => {
 
@@ -144,17 +147,21 @@ const ProductScreen = ({ history, match }) => {
                     <Message variant='danger'>{errorProductReview}</Message>
                   )}
                   {userInfo ? (
-                    userName === founder ? <Button
+                    userName === founder ? (<div>
+                      <Button
                       onClick={addToCartHandler}
                       className='btn-block'
                       type='button'
-                      disabled={product.countInStock === 0}
-                    >View Applications</Button> :<ApplicationComponent />
+                      // disabled={product.countInStock === 0}
+                    >View Applications</Button>
+                    <ViewApp />
+                    </div>) :<ApplicationComponent />
                   ) : (
                     <Message>
                       Please <Link to='/login'>sign in</Link> to write a review{' '}
                     </Message>
                   )}
+
                 </ListGroup.Item>
               </ListGroup>
             </Col>
